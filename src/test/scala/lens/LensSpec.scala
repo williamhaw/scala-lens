@@ -3,8 +3,9 @@ package lens
 import models._
 import org.scalatest.{FlatSpec, Matchers}
 import models.AccountLenses._
+import models.VehicleLenses._
 
-class LensSpec extends FlatSpec with Matchers{
+class LensSpec extends FlatSpec with Matchers {
 
   "The Lens" should "get number of street from Street case class" in {
     val street = Street("Long Avenue", 3)
@@ -44,6 +45,21 @@ class LensSpec extends FlatSpec with Matchers{
 
     accountStreetNumberLens.set(account, 10).user.address.street.number shouldEqual 10
     account.user.address.street.number shouldEqual 3
+  }
+
+  it should "get an Option of name from Role in Passenger case class" in {
+    val passenger1 = Passenger("Amy", 0, Some(Role("Captain")))
+    val passenger2 = Passenger("Beatrice", 0, None)
+
+    passengerRoleNameLens.get(passenger1) shouldBe Some("Captain")
+    passengerRoleNameLens.get(passenger2) shouldBe None
+  }
+
+  it should "set an Option of name for Role in Passenger case class" in {
+    val passenger = Passenger("Amy", 0, Some(Role("Captain")))
+
+    passengerRoleNameLens.set(passenger, Some("Janitor")).role.map(_.name) shouldBe Some("Janitor")
+    passengerRoleNameLens.set(passenger, None).role shouldBe None
   }
 
 }
