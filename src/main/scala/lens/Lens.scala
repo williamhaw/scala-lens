@@ -8,6 +8,6 @@ object LensUtils {
       inner: Lens[Inner, Value]): Lens[Outer, Value] =
     Lens[Outer, Value](
       get = outer.get andThen inner.get,
-      set = (obj, value) => outer.set(obj, inner.set(outer.get(obj, value)))
+      set = (obj, value) => outer.set(obj, inner.set(outer.get(obj), value))
     )
 }
