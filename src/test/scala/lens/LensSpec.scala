@@ -10,12 +10,12 @@ class LensSpec extends FlatSpec with Matchers{
   val addressStreetLens: Lens[Address, Street] = Lens[Address, Street](get = _.street, set = (a, b) => a.copy(street = b))
   val addressStreetNumberLens = compose(addressStreetLens, streetNumberLens)
 
-  "The Lens" should "get value of attribute in case class" in {
+  "The Lens" should "get number of street from Street case class" in {
     val street = Street("Long Avenue", 3)
     streetNumberLens.get(street) shouldEqual 3
   }
 
-  "The Lens" should "set value in copy of case class" in {
+  "The Lens" should "set number of street in copy of Street case class" in {
     val street = Street("Short Street", 4)
     streetNumberLens.set(street, 25).number shouldEqual 25
   }
