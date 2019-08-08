@@ -19,7 +19,7 @@ class LensSpec extends FlatSpec with Matchers {
   }
 
   it should "get number of street from Address case class" in {
-    val street = Street("Left Side", 10)
+    val street  = Street("Left Side", 10)
     val address = Address("USA", "New York", street)
 
     addressStreetNumberLens.get(address) shouldEqual 10
@@ -27,7 +27,7 @@ class LensSpec extends FlatSpec with Matchers {
   }
 
   it should "set number of street in copy of Address case class" in {
-    val street = Street("Left Side", 10)
+    val street  = Street("Left Side", 10)
     val address = Address("USA", "New York", street)
 
     addressStreetNumberLens.set(address, 3).street.number shouldEqual 3
