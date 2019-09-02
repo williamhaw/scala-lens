@@ -8,7 +8,7 @@
 
 ## Todo
 - [x] Handle product types
-- [ ] Handle sum types (using Prisms?)
+- [x] Handle sum types (using Prisms)
 - [ ] Handle Option values in models (using Optionals?)
 - [ ] Handle Seq values (using Traversals?)
 
